@@ -21,7 +21,7 @@ public class Address {
     private UUID id;
 
     private String city;
-    private String region;
+    private String uf;
 
     @OneToOne
     @JoinColumn(name = "event_id")

@@ -27,6 +27,8 @@ public class CouponService {
         coupon.setValid(new Date(couponData.valid()));
         coupon.setEvent(event);
 
+        IO.println("date: " + couponData.valid());
+
         return this.couponRepository.save(coupon);
     }
 }
