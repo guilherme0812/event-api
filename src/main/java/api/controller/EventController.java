@@ -4,7 +4,6 @@ import api.domain.event.Event;
 import api.domain.event.EventRequestDTO;
 import api.domain.event.EventResponseDTO;
 import api.service.EventService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -45,8 +44,9 @@ public class EventController {
     }
 
     @GetMapping("/{eventId}")
-    public ResponseEntity<Object> getEventDetail(@PathVariable UUID eventId) {
-        return ResponseEntity.status(200).body(eventId);
+    public ResponseEntity<Event> getEventDetail(@PathVariable UUID eventId) {
+        Event event = this.eventService.findEventById(eventId);
+        return ResponseEntity.status(200).body(event);
     }
 
     @GetMapping("/filter")

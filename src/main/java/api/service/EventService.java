@@ -4,6 +4,7 @@ import api.domain.event.Event;
 import api.domain.event.EventAddressProjection;
 import api.domain.event.EventRequestDTO;
 import api.domain.event.EventResponseDTO;
+import api.exception.EventNotFoundException;
 import api.repositories.EventRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,8 +39,6 @@ public class EventService {
         newEvent.setImgUrl("http://localhost:3000");
         newEvent.setEventUrl("http://localhost:3000");
 
-        IO.println("test: " + date);
-
         repository.save(newEvent);
 
         if (!data.remote()) {
@@ -47,6 +46,12 @@ public class EventService {
         }
 
         return newEvent;
+    }
+
+    public Event findEventById(UUID id) {
+        Event event = this.repository.findById(id).orElseThrow(() -> new EventNotFoundException(id));
+
+        return event;
     }
 
     public List<EventResponseDTO> getUpcomingEvents(int page, int size) {
