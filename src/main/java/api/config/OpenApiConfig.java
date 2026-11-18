@@ -13,7 +13,7 @@ public class OpenApiConfig {
         return new OpenAPI()
                 .info(new Info()
                         .title("Events API")
-                        .description("API de gerenciamento de eventos")
+                        .description("Events managements API")
                         .version("1.0.0"));
     }
 }
